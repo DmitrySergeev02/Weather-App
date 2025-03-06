@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 
@@ -25,14 +26,14 @@ class MainActivity : AppCompatActivity() {
 
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://api.weatherapi.com/v1/")
-            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .client(client)
             .build()
 
         val weatherApi: WeatherApi = retrofit.create<WeatherApi>()
 
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d(TAG, weatherApi.getCurrentWeather("Moscow"))
+            Log.d(TAG, "${weatherApi.getCurrentWeather("Moscow")}")
         }
     }
 
