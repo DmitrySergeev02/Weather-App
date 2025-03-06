@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -56,4 +57,8 @@ dependencies {
     // converter factory
     implementation ("com.squareup.retrofit2:converter-scalars:2.11.0")
 
+    // Moshi
+    implementation("com.squareup.moshi:moshi:1.15.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
 }
