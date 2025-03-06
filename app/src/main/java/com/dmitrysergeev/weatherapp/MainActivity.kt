@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dmitrysergeev.weatherapp.api.WeatherApi
+import com.dmitrysergeev.weatherapp.api.WeatherInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val client = OkHttpClient.Builder().build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor(WeatherInterceptor())
+            .build()
 
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://api.weatherapi.com/v1/")
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val weatherApi: WeatherApi = retrofit.create<WeatherApi>()
 
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d(TAG, weatherApi.getCurrentWeather("Paris"))
+            Log.d(TAG, weatherApi.getCurrentWeather("Moscow"))
         }
     }
 
