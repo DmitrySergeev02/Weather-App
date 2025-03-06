@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
         val weatherApi: WeatherApi = retrofit.create<WeatherApi>()
 
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d(TAG,"Start")
-            Log.d(TAG, weatherApi.getWeather())
+            Log.d(TAG, weatherApi.getCurrentWeather("Paris"))
         }
     }
 
