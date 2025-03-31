@@ -1,6 +1,6 @@
-package com.dmitrysergeev.weatherapp.api
+package com.dmitrysergeev.weatherapp.data.weather.api
 
-import com.dmitrysergeev.weatherapp.api.model.CurrentWeatherResponse
+import com.dmitrysergeev.weatherapp.data.weather.api.model.CurrentWeatherResponseApi
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -9,6 +9,6 @@ interface WeatherApi {
     @GET("current.json")
     suspend fun getCurrentWeather(
         @Query("q") q: String
-    ): CurrentWeatherResponse
+    ): CurrentWeatherResponseApi
 
 }
