@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeatherResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -7,4 +8,13 @@ import com.squareup.moshi.JsonClass
 data class CurrentWeatherResponseApi(
     val locationApi: LocationApi,
     @Json(name = "current") val currentWeatherApi: CurrentWeatherApi
-)
+) {
+
+    fun toCurrentWeatherResponse(): CurrentWeatherResponse{
+        return CurrentWeatherResponse(
+            locationApi.toLocation(),
+            currentWeatherApi.toCurrentWeather()
+        )
+    }
+
+}

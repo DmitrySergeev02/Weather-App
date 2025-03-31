@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeather
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -11,4 +12,17 @@ data class CurrentWeatherApi(
     @Json(name = "temp_f") val tempF: Float,
     @Json(name = "is_day") val isDay: Int,
     val conditionApi: ConditionApi
-)
+) {
+
+    fun toCurrentWeather(): CurrentWeather{
+        return CurrentWeather(
+            lastUpdatedEpoch,
+            lastUpdated,
+            tempC,
+            tempF,
+            isDay,
+            conditionApi.toCondition()
+        )
+    }
+
+}
