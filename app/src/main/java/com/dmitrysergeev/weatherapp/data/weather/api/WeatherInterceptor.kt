@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.api
+package com.dmitrysergeev.weatherapp.data.weather.api
 
 import okhttp3.HttpUrl
 import okhttp3.Interceptor

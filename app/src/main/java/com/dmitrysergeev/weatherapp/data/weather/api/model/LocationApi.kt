@@ -1,9 +1,9 @@
-package com.dmitrysergeev.weatherapp.api.model
+package com.dmitrysergeev.weatherapp.data.weather.api.model
 
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Location(
+data class LocationApi(
     val name: String,
     val region: String,
     val country: String,

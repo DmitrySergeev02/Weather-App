@@ -3,8 +3,8 @@ package com.dmitrysergeev.weatherapp
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.dmitrysergeev.weatherapp.api.WeatherApi
-import com.dmitrysergeev.weatherapp.api.WeatherInterceptor
+import com.dmitrysergeev.weatherapp.data.weather.api.WeatherApi
+import com.dmitrysergeev.weatherapp.data.weather.api.WeatherInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
