@@ -4,10 +4,13 @@ import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
 const val API_KEY = "6acd4a1405454811ada11545250603"
 
-class WeatherInterceptor: Interceptor {
+@Singleton
+class WeatherInterceptor @Inject constructor(): Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest: Request = chain.request()
 
