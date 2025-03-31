@@ -3,8 +3,10 @@ package com.dmitrysergeev.weatherapp
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.dmitrysergeev.weatherapp.data.weather.WeatherRepository
 import com.dmitrysergeev.weatherapp.data.weather.api.WeatherApi
 import com.dmitrysergeev.weatherapp.data.weather.api.WeatherInterceptor
+import com.dmitrysergeev.weatherapp.data.weather.api.WeatherRepositoryApiImp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,8 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         val weatherApi: WeatherApi = retrofit.create<WeatherApi>()
 
+        val weatherRepository: WeatherRepository = WeatherRepositoryApiImp(weatherApi)
+
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d(TAG, "${weatherApi.getCurrentWeather("Moscow")}")
+            Log.d(TAG, "${weatherRepository.getCurrentWeather("Moscow")}")
         }
     }
 

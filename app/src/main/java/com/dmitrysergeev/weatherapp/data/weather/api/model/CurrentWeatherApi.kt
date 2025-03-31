@@ -11,7 +11,7 @@ data class CurrentWeatherApi(
     @Json(name = "temp_c") val tempC: Float,
     @Json(name = "temp_f") val tempF: Float,
     @Json(name = "is_day") val isDay: Int,
-    val conditionApi: ConditionApi
+    @Json(name = "condition") val conditionApi: ConditionApi
 ) {
 
     fun toCurrentWeather(): CurrentWeather{
