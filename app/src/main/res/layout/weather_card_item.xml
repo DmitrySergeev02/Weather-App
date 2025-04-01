@@ -53,6 +53,51 @@
                 android:src="@drawable/mcloudy"
                 />
 
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weather_status"
+                android:src="@drawable/ic_round_location_on"
+                />
+
+
+            <TextView
+                android:id="@+id/location_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/weather_status"
+                app:layout_constraintStart_toEndOf="@id/location_icon"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/white"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:text="Washington DC, USA"/>
+
+            <ImageView
+                android:id="@+id/rain_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location_icon"
+                android:src="@drawable/rain"
+                />
+
+            <TextView
+                android:id="@+id/rain_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/location_icon"
+                app:layout_constraintStart_toEndOf="@id/rain_icon"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/white"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:text="No perception for at least 120 min"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
