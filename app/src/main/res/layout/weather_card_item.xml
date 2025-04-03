@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="306dp"
     android:layout_height="218dp"
     app:cardCornerRadius="20dp"
@@ -29,7 +30,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body2"
-                android:text="Chance of rain 60%"
+                tools:text="Chance of rain 60%"
                 />
 
             <TextView
@@ -41,7 +42,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="10dp"
                 android:textAppearance="@style/Headline5"
-                android:text="Partly Cloudy"
+                tools:text="Partly Cloudy"
            />
             
             <ImageView
@@ -74,7 +75,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body2"
-                android:text="Washington DC, USA"/>
+                tools:text="Washington DC, USA"/>
 
             <ImageView
                 android:id="@+id/rain_icon"
@@ -87,7 +88,7 @@
                 />
 
             <TextView
-                android:id="@+id/rain_text"
+                android:id="@+id/precipitation_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/location_icon"
@@ -96,7 +97,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body2"
-                android:text="No precipitation for at least 120 min"/>
+                tools:text="No precipitation for at least 120 min"/>
 
             <TextView
                 android:id="@+id/current_weather_degree"
@@ -107,7 +108,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="15dp"
                 android:textAppearance="@style/Headline5"
-                android:text="26"/>
+                tools:text="26"/>
 
             <TextView
                 android:id="@+id/celsius_sign"
@@ -118,7 +119,7 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Medium"
-                android:text="°C"/>
+                android:text="@string/celsius_sign"/>
 
             <ImageView
                 android:id="@+id/caret_up"
@@ -139,7 +140,7 @@
                 android:layout_marginStart="3dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body2_std"
-                android:text="34°C"/>
+                tools:text="34°C" />
 
             <ImageView
                 android:id="@+id/caret_down"
@@ -159,7 +160,7 @@
                 android:layout_marginStart="3dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body2_std"
-                android:text="20°C"/>
+                tools:text="20°C" />
 
             <TextView
                 android:id="@+id/feels_like_text"
@@ -170,7 +171,7 @@
                 android:layout_marginStart="10dp"
                 android:textColor="@color/white"
                 android:textAppearance="@style/Body3"
-                android:text="Feels like 20°C"/>
+                tools:text="Feels like 20°C" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
