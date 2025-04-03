@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.Day
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -25,4 +26,29 @@ data class DayApi(
     @Json(name = "totalprecip_mm") val totalPrecipMm: Double,
     @Json(name = "totalsnow_cm") val totalSnowCm: Double,
     val uv: Double
-)
+) {
+
+    fun toDay(): Day = Day(
+        avgHumidity,
+        avgTempC,
+        avgTempF,
+        avgVisKm,
+        avgVisMiles,
+        conditionApi.toCondition(),
+        dailyChanceOfRain,
+        dailyChanceOfSnow,
+        dailyWillItRain,
+        dailyWillItSnow,
+        maxTempC,
+        maxTempF,
+        maxWindKph,
+        maxWindMph,
+        minTempC,
+        minTempF,
+        totalPrecipIn,
+        totalPrecipMm,
+        totalSnowCm,
+        uv
+    )
+
+}

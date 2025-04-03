@@ -1,9 +1,12 @@
 package com.dmitrysergeev.weatherapp.data.weather
 
-import com.dmitrysergeev.weatherapp.data.weather.api.model.WeatherResponseApi
+import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeatherResponse
+import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 
 interface WeatherRepository {
 
-    suspend fun getCurrentWeather(query: String): WeatherResponseApi
+    suspend fun getCurrentWeather(query: String): CurrentWeatherResponse
+
+    suspend fun getForecastWeather(query: String, days:Int, dt: String): ForecastWeatherResponse
 
 }

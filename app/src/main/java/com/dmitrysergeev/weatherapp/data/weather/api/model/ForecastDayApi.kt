@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.ForecastDay
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -10,4 +11,16 @@ data class ForecastDayApi(
     @Json(name = "date_epoch") val dateEpoch: Int,
     @Json(name = "day") val dayApi: DayApi,
     @Json(name = "hour") val hourApi: List<HourApi>
-)
+) {
+
+    fun toForecastDay(): ForecastDay = ForecastDay(
+        astroApi.toAstro(),
+        date,
+        dateEpoch,
+        dayApi.toDay(),
+        hourApi.map {
+            it.toHour()
+        }
+    )
+
+}

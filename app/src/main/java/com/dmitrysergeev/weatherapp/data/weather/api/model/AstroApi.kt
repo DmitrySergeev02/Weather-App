@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.Astro
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -13,4 +14,17 @@ data class AstroApi(
     val moonset: String,
     val sunrise: String,
     val sunset: String
-)
+) {
+
+    fun toAstro(): Astro = Astro(
+        isMoonUp,
+        isSunUp,
+        moonIllumination,
+        moonPhase,
+        moonrise,
+        moonset,
+        sunrise,
+        sunset
+    )
+
+}

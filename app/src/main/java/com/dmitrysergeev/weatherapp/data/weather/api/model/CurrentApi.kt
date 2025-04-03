@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeather
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -34,4 +35,38 @@ data class CurrentApi(
     @Json(name = "wind_mph") val windMph: Double,
     @Json(name = "windchill_c") val windchillC: Double,
     @Json(name = "windchill_f") val windchillF: Double
-)
+) {
+
+    fun toCurrentWeather(): CurrentWeather = CurrentWeather(
+        cloud,
+        conditionApi.toCondition(),
+        dewPointC,
+        dewPointF,
+        feelsLikeC,
+        feelsLikeF,
+        gustKph,
+        gustMph,
+        heatIndexC,
+        heatIndexF,
+        humidity,
+        isDay,
+        lastUpdated,
+        lastUpdatedEpoch,
+        precipIn,
+        precipMm,
+        pressureIn,
+        pressureMb,
+        tempC,
+        tempF,
+        uv,
+        visKm,
+        visMiles,
+        windDegree,
+        windDir,
+        windKph,
+        windMph,
+        windchillC,
+        windchillF
+    )
+
+}

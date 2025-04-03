@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.Hour
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -39,4 +40,43 @@ data class HourApi(
     @Json(name = "wind_mph") val windMph: Double,
     @Json(name = "windchill_c") val windchillC: Double,
     @Json(name = "windchill_f") val windchillF: Double
-)
+) {
+
+    fun toHour(): Hour = Hour(
+        chanceOfRain,
+        chanceOfSnow,
+        cloud,
+        conditionApi.toCondition(),
+        dewPointC,
+        dewPointF,
+        feelsLikeC,
+        feelsLikeF,
+        gustKph,
+        gustMph,
+        heatIndexC,
+        heatIndexF,
+        humidity,
+        isDay,
+        precipIn,
+        precipMm,
+        pressureIn,
+        pressureMb,
+        snowCm,
+        tempC,
+        tempF,
+        time,
+        timeEpoch,
+        uv,
+        visKm,
+        visMiles,
+        willItRain,
+        willItSnow,
+        windDegree,
+        windDir,
+        windKph,
+        windMph,
+        windchillC,
+        windchillF
+    )
+
+}

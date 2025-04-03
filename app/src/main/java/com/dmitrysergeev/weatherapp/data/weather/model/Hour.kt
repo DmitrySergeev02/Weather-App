@@ -1,6 +1,8 @@
 package com.dmitrysergeev.weatherapp.data.weather.model
 
-data class CurrentWeather(
+data class Hour(
+    val chanceOfRain: Int,
+    val chanceOfSnow: Int,
     val cloud: Int,
     val conditionApi: Condition,
     val dewPointC: Double,
@@ -13,17 +15,20 @@ data class CurrentWeather(
     val heatIndexF: Double,
     val humidity: Int,
     val isDay: Int,
-    val lastUpdated: String,
-    val lastUpdatedEpoch: Int,
     val precipIn: Double,
     val precipMm: Double,
     val pressureIn: Double,
     val pressureMb: Double,
+    val snowCm: Double,
     val tempC: Double,
     val tempF: Double,
-    val uv: Int,
+    val time: String,
+    val timeEpoch: Int,
+    val uv: Double,
     val visKm: Double,
     val visMiles: Double,
+    val willItRain: Int,
+    val willItSnow: Int,
     val windDegree: Int,
     val windDir: String,
     val windKph: Double,

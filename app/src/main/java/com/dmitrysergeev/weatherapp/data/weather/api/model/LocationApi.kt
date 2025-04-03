@@ -1,5 +1,6 @@
 package com.dmitrysergeev.weatherapp.data.weather.api.model
 
+import com.dmitrysergeev.weatherapp.data.weather.model.Location
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -13,4 +14,17 @@ data class LocationApi(
     val name: String,
     val region: String,
     @Json(name = "tz_id") val tzId: String
-)
+) {
+
+    fun toLocation(): Location = Location(
+        country,
+        lat,
+        localtime,
+        localtimeEpoch,
+        lon,
+        name,
+        region,
+        tzId
+    )
+
+}
