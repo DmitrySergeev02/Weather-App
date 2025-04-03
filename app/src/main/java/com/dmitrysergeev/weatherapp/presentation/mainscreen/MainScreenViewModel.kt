@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dmitrysergeev.weatherapp.data.weather.WeatherRepository
+import com.dmitrysergeev.weatherapp.data.weather.api.model.WeatherResponseApi
 import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ class MainScreenViewModel @Inject constructor(
         viewModelScope.launch {
             currentWeatherResponse = weatherRepository.getCurrentWeather("Moscow")
             Log.d("MainScreenViewModel", currentWeatherResponse.toString())
+            Log.d("MainScreenViewModel", weatherRepository.getForecastWeather("Moscow",3,"2025-04-03").toString())
         }
     }
 
