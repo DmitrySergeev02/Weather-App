@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="@style/Body2"
                 android:text="Chance of rain 60%"
                 />
 
@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@id/rain_chance"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="10dp"
-                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textAppearance="@style/Headline5"
                 android:text="Partly Cloudy"
            />
             
@@ -73,7 +73,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="@style/Body2"
                 android:text="Washington DC, USA"/>
 
             <ImageView
@@ -95,7 +95,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="@style/Body2"
                 android:text="No precipitation for at least 120 min"/>
 
             <TextView
@@ -106,7 +106,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/white"
                 android:layout_marginTop="15dp"
-                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textAppearance="@style/Headline5"
                 android:text="26"/>
 
             <TextView
@@ -117,7 +117,7 @@
                 app:layout_constraintStart_toEndOf="@+id/current_weather_degree"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody1"
+                android:textAppearance="@style/Medium"
                 android:text="°C"/>
 
             <ImageView
@@ -138,7 +138,7 @@
                 app:layout_constraintStart_toEndOf="@+id/caret_up"
                 android:layout_marginStart="3dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="@style/Body2_std"
                 android:text="34°C"/>
 
             <ImageView
@@ -158,7 +158,7 @@
                 app:layout_constraintStart_toEndOf="@+id/caret_down"
                 android:layout_marginStart="3dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="@style/Body2_std"
                 android:text="20°C"/>
 
             <TextView
@@ -169,7 +169,7 @@
                 app:layout_constraintStart_toEndOf="@+id/min_degree_text"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/white"
-                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:textAppearance="@style/Body3"
                 android:text="Feels like 20°C"/>
 
 
