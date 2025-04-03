@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="chance_of_rain">Chance of rain %1$d%%</string>
+    <string name="partly_cloudy">Partly Cloudy</string>
+    <string name="no_precipitation_for_at_least">No precipitation for at least %1$d min</string>
+    <string name="celsius_sign">°C</string>
+    <string name="values_celsius">%1$d°C</string>
+    <string name="feels_like">Feels like %1$d°C</string>
 </resources>
