@@ -31,6 +31,8 @@ class WeatherCardListAdapter(
     private var cards: List<ForecastWeatherResponse>
 ): RecyclerView.Adapter<WeatherCardViewHolder>() {
 
+    private var originalList: List<ForecastWeatherResponse> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherCardViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = WeatherCardItemBinding.inflate(inflater,parent,false)
@@ -43,9 +45,18 @@ class WeatherCardListAdapter(
     }
 
     fun updateData(newCards: List<ForecastWeatherResponse>){
-        this.cards = newCards
+        originalList = newCards
+        val cyclicList = mutableListOf<ForecastWeatherResponse>()
+        if (originalList.isNotEmpty()){
+            cyclicList.add(originalList.last())
+            cyclicList.addAll(originalList)
+            cyclicList.add(originalList.first())
+        }
+        this.cards = cyclicList
         notifyDataSetChanged()
     }
+
+    fun getRealItemCount(): Int = originalList.size
 
     override fun getItemCount(): Int = cards.size
 }

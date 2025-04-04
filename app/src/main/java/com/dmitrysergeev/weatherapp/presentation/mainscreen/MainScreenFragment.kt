@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,11 +37,26 @@ class MainScreenFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.cardsRecyclerView)
+
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.cardsRecyclerView.layoutManager = layoutManager
         val adapter = WeatherCardListAdapter(listOf())
         binding.cardsRecyclerView.adapter = adapter
+
+        binding.cardsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                if (firstVisibleItemPosition == 0) {
+                    recyclerView.scrollToPosition(adapter.getRealItemCount())
+                } else if (firstVisibleItemPosition == adapter.itemCount -1) {
+                    recyclerView.scrollToPosition(1)
+                }
+            }
+        })
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
