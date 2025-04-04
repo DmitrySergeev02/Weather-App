@@ -2,11 +2,12 @@ package com.dmitrysergeev.weatherapp.data.weather
 
 import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeatherResponse
 import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
+import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {
 
-    suspend fun getCurrentWeather(query: String): CurrentWeatherResponse
+    fun getCurrentWeather(query: String): Flow<CurrentWeatherResponse>
 
-    suspend fun getForecastWeather(query: String, days:Int, dt: String): ForecastWeatherResponse
+    fun getForecastWeather(query: String, days:Int, dt: String): Flow<ForecastWeatherResponse>
 
 }
