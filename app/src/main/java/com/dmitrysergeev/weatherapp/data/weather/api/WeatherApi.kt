@@ -15,7 +15,7 @@ interface WeatherApi {
     suspend fun getForecastWeather(
         @Query("q") q: String,
         @Query("days") days: Int,
-        @Query("dt") dt: String
+        @Query("dt") dt: String?
     ): WeatherResponseApi
 
 }

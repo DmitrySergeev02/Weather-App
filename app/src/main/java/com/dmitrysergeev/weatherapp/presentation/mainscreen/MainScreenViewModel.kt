@@ -24,14 +24,9 @@ class MainScreenViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            weatherRepository.getForecastWeather("Saint-Petersburg",3,"2025-04-04").collect{
+            weatherRepository.getForecastWeather("Saint-Petersburg",3).collect{
                 _forecast.value = it
             }
         }
     }
-
-    fun test(){
-        Log.d("MainScreenViewModel", "123")
-    }
-
 }

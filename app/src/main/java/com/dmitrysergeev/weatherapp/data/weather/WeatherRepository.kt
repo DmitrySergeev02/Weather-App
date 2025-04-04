@@ -8,6 +8,6 @@ interface WeatherRepository {
 
     fun getCurrentWeather(query: String): Flow<CurrentWeatherResponse>
 
-    fun getForecastWeather(query: String, days:Int, dt: String): Flow<ForecastWeatherResponse>
+    fun getForecastWeather(query: String, days:Int, dt: String?=null): Flow<ForecastWeatherResponse>
 
 }

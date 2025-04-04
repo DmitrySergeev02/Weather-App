@@ -52,8 +52,8 @@ class MainScreenFragment: Fragment() {
                             feelsLikeText.text = getString(R.string.feels_like, 20)
                         } else {
                             rainChance.text = getString(R.string.chance_of_rain, it.forecast.forecastDay[0].dayApi.dailyChanceOfRain)
-                            weatherStatus.text = "Partly Cloudy"
-                            locationText.text = "${it.location.name} ${it.location.country}"
+                            weatherStatus.text = it.currentWeather.condition.text
+                            locationText.text = getString(R.string.location, it.location.name, it.location.country)
                             precipitationText.text = getString(R.string.no_precipitation_for_at_least,120)
                             currentWeatherDegree.text = "${it.currentWeather.tempC.toInt()}"
                             maxDegreeText.text = getString(R.string.values_celsius, it.forecast.forecastDay[0].dayApi.maxTempC.toInt())
@@ -64,8 +64,6 @@ class MainScreenFragment: Fragment() {
                 }
             }
         }
-
-        viewModel.test()
     }
 
 }

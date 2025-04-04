@@ -2,7 +2,7 @@ package com.dmitrysergeev.weatherapp.data.weather.model
 
 data class CurrentWeather(
     val cloud: Int,
-    val conditionApi: Condition,
+    val condition: Condition,
     val dewPointC: Double,
     val dewPointF: Double,
     val feelsLikeC: Double,

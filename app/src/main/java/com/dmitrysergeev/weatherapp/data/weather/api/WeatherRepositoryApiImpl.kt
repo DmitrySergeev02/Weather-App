@@ -17,7 +17,7 @@ class WeatherRepositoryApiImpl @Inject constructor(
         }
     }
 
-    override fun getForecastWeather(query: String, days: Int, dt: String): Flow<ForecastWeatherResponse> {
+    override fun getForecastWeather(query: String, days: Int, dt: String?): Flow<ForecastWeatherResponse> {
         return flow {
             emit(
                 weatherApi.getForecastWeather(

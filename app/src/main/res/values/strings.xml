@@ -6,4 +6,5 @@
     <string name="celsius_sign">°C</string>
     <string name="values_celsius">%1$d°C</string>
     <string name="feels_like">Feels like %1$d°C</string>
+    <string name="location">%1$s, %2$s</string>
 </resources>
