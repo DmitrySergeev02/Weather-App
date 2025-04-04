@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
     implementation ("com.squareup.okhttp3:okhttp:4.11.0")
