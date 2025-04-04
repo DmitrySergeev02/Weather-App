@@ -1,6 +1,8 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.R
@@ -21,12 +23,13 @@ class WeatherCardViewHolder(
             maxDegreeText.text = itemView.context.getString(R.string.values_celsius, forecastWeatherResponse.forecast.forecastDay[0].dayApi.maxTempC.toInt())
             minDegreeText.text = itemView.context.getString(R.string.values_celsius, forecastWeatherResponse.forecast.forecastDay[0].dayApi.minTempC.toInt())
             feelsLikeText.text = itemView.context.getString(R.string.feels_like, forecastWeatherResponse.currentWeather.feelsLikeC.toInt())
+            cardView.visibility = View.VISIBLE
         }
     }
 }
 
 class WeatherCardListAdapter(
-    private val cards: List<ForecastWeatherResponse>
+    private var cards: List<ForecastWeatherResponse>
 ): RecyclerView.Adapter<WeatherCardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherCardViewHolder {
@@ -38,6 +41,11 @@ class WeatherCardListAdapter(
     override fun onBindViewHolder(holder: WeatherCardViewHolder, position: Int) {
         val card: ForecastWeatherResponse = cards[position]
         holder.bind(card)
+    }
+
+    fun updateData(newCards: List<ForecastWeatherResponse>){
+        this.cards = newCards
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = cards.size
