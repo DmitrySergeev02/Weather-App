@@ -1,7 +1,6 @@
 package com.dmitrysergeev.weatherapp.di
 
 import com.dmitrysergeev.weatherapp.data.weather.WeatherRepository
-import com.dmitrysergeev.weatherapp.data.weather.api.WeatherApi
 import com.dmitrysergeev.weatherapp.data.weather.api.WeatherRepositoryApiImpl
 import dagger.Binds
 import dagger.Module

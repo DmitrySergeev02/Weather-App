@@ -1,11 +1,8 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dmitrysergeev.weatherapp.data.weather.WeatherRepository
-import com.dmitrysergeev.weatherapp.data.weather.api.model.WeatherResponseApi
-import com.dmitrysergeev.weatherapp.data.weather.model.CurrentWeatherResponse
 import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
