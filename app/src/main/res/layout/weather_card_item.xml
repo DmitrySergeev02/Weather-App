@@ -9,6 +9,7 @@
     android:layout_height="218dp"
     app:cardCornerRadius="20dp"
     app:cardBackgroundColor="@android:color/transparent"
+    android:layout_marginHorizontal="16dp"
     >
 
     <FrameLayout
