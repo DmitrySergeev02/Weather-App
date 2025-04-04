@@ -13,7 +13,6 @@ import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.math.round
 
 @AndroidEntryPoint
 class MainScreenFragment: Fragment() {
@@ -41,16 +40,8 @@ class MainScreenFragment: Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.forecast.collect {
                     binding.card.apply {
-                        if (it==null){
-                            rainChance.text = getString(R.string.chance_of_rain,60)
-                            weatherStatus.text = "Partly Cloudy"
-                            locationText.text = "Washington DC, USA"
-                            precipitationText.text = getString(R.string.no_precipitation_for_at_least,120)
-                            currentWeatherDegree.text = "26"
-                            maxDegreeText.text = getString(R.string.values_celsius, 34)
-                            minDegreeText.text = getString(R.string.values_celsius, 20)
-                            feelsLikeText.text = getString(R.string.feels_like, 20)
-                        } else {
+                        if (it!=null) {
+                            cardView.visibility = View.VISIBLE
                             rainChance.text = getString(R.string.chance_of_rain, it.forecast.forecastDay[0].dayApi.dailyChanceOfRain)
                             weatherStatus.text = it.currentWeather.condition.text
                             locationText.text = getString(R.string.location, it.location.name, it.location.country)
