@@ -1,6 +1,7 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
@@ -37,7 +39,7 @@ class MainScreenFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val snapHelper = LinearSnapHelper()
+        val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.cardsRecyclerView)
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -49,11 +51,12 @@ class MainScreenFragment: Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-                if (firstVisibleItemPosition == 0) {
-                    recyclerView.scrollToPosition(adapter.getRealItemCount())
-                } else if (firstVisibleItemPosition == adapter.itemCount -1) {
-                    recyclerView.scrollToPosition(1)
+                val listSize = adapter.listSize()
+                val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
+                if (firstVisiblePosition > listSize && firstVisiblePosition%listSize == 0) {
+                    recyclerView.scrollToPosition(listSize)
+                } else if (firstVisiblePosition == listSize - 1){
+                    recyclerView.scrollToPosition(listSize*2)
                 }
             }
         })
