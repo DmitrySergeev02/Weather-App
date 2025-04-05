@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,6 +28,71 @@ class MainScreenFragment: Fragment() {
     private val viewModel: MainScreenViewModel by viewModels()
 
     private val cities: List<String> = listOf("Saint-Petersburg", "Moscow", "Tver")
+    private val menuItems: List<QuickMenuItem> = listOf(
+        QuickMenuItem(
+            title = "UV Index",
+            iconId = R.drawable.sunny,
+            doOnClick = {
+                Log.d("TAAAG", "UV Index")
+            }
+        ),
+        QuickMenuItem(
+            title = "Air Quality",
+            iconId = R.drawable.air_quality,
+            doOnClick = {
+                Log.d("TAAAG", "Air Quality")
+            }
+        ),
+        QuickMenuItem(
+            title = "Visibility",
+            iconId = R.drawable.humidity,
+            doOnClick = {
+                Log.d("TAAAG", "Visibility")
+            }
+        ),
+        QuickMenuItem(
+            title = "Precipitation",
+            iconId = R.drawable.heavy_rain,
+            doOnClick = {
+                Log.d("TAAAG", "Precipitation")
+            }
+        ),
+        QuickMenuItem(
+            title = "Hurricane",
+            iconId = R.drawable.hurricane,
+            doOnClick = {
+                Log.d("TAAAG", "Hurricane")
+            }
+        ),
+        QuickMenuItem(
+            title = "Visibility",
+            iconId = R.drawable.eye_alt,
+            doOnClick = {
+                Log.d("TAAAG", "Visibility")
+            }
+        ),
+        QuickMenuItem(
+            title = "Wind",
+            iconId = R.drawable.wind,
+            doOnClick = {
+                Log.d("TAAAG", "Wind")
+            }
+        ),
+        QuickMenuItem(
+            title = "Radar",
+            iconId = R.drawable.radar,
+            doOnClick = {
+                Log.d("TAAAG", "Radar")
+            }
+        ),
+        QuickMenuItem(
+            title = "Earthquake",
+            iconId = R.drawable.earthquake,
+            doOnClick = {
+                Log.d("TAAAG", "Earthquake")
+            }
+        )
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
