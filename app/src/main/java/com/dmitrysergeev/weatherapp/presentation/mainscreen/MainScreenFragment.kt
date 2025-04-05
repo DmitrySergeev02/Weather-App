@@ -10,13 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -109,8 +110,8 @@ class MainScreenFragment: Fragment() {
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.cardsRecyclerView)
 
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.cardsRecyclerView.layoutManager = layoutManager
+        val cardsLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.cardsRecyclerView.layoutManager = cardsLayoutManager
         val adapter = WeatherCardListAdapter(listOf())
         binding.cardsRecyclerView.adapter = adapter
 
@@ -119,7 +120,7 @@ class MainScreenFragment: Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val listSize = adapter.listSize()
-                val firstVisiblePosition = layoutManager.findFirstVisibleItemPosition()
+                val firstVisiblePosition = cardsLayoutManager.findFirstVisibleItemPosition()
                 if (firstVisiblePosition > listSize && firstVisiblePosition%listSize == 0) {
                     recyclerView.scrollToPosition(listSize)
                 } else if (firstVisiblePosition == listSize - 1){
@@ -139,6 +140,11 @@ class MainScreenFragment: Fragment() {
         cities.forEach { city ->
             viewModel.getCityForecast(city)
         }
+
+        val quickMenuLayoutManager = GridLayoutManager(context,4)
+        binding.quickMenuRecyclerView.layoutManager = quickMenuLayoutManager
+        val quickMenuListAdapter = QuickMenuListAdapter(menuItems)
+        binding.quickMenuRecyclerView.adapter = quickMenuListAdapter
     }
 
 }
