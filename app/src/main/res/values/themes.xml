@@ -35,4 +35,8 @@
         <item name="fontStyle">normal</item>
         <item name="fontFamily">sans-serif-medium</item>
     </style>
+
+    <style name="Body3_std" parent="Body3">
+        <item name="fontFamily">sans-serif</item>
+    </style>
 </resources>
