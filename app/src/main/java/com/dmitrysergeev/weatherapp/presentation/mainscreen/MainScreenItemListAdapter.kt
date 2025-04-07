@@ -10,14 +10,6 @@ import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
 
-class MainScreenItemViewHolder(binding: ViewBinding): RecyclerView.ViewHolder(binding.root){
-
-    fun onBind(item: MainScreenItem, viewType: Int){
-
-    }
-
-}
-
 class MainScreenItemListAdapter(
     private val menuItemList: List<MainScreenItem>
 ): RecyclerView.Adapter<MainScreenItemViewHolder>() {
