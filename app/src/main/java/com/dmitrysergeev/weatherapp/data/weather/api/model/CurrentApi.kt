@@ -26,7 +26,7 @@ data class CurrentApi(
     @Json(name = "pressure_mb") val pressureMb: Double,
     @Json(name = "temp_c") val tempC: Double,
     @Json(name = "temp_f") val tempF: Double,
-    val uv: Int,
+    val uv: Float,
     @Json(name = "vis_km") val visKm: Double,
     @Json(name = "vis_miles") val visMiles: Double,
     @Json(name = "wind_degree") val windDegree: Int,

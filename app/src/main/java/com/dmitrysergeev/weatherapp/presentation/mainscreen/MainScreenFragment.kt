@@ -10,15 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.R
+import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuListAdapter
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuItem
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenItem
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenItemListAdapter
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MarginItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -104,35 +104,44 @@ class MainScreenFragment: Fragment() {
         return binding.root
     }
 
+    private fun createMainScreenItems(weatherResponsesList: List<ForecastWeatherResponse> = emptyList()): List<MainScreenItem>{
+        val mainScreenItems: List<MainScreenItem> = listOf(
+            MainScreenItem(
+                title = "Weather Cards",
+                data = weatherResponsesList
+            ),
+            MainScreenItem(
+                title = "Quick Menu",
+                data = menuItems
+            ),
+            MainScreenItem(
+                title = "Forecast",
+                data = "asda"
+            ),
+            MainScreenItem(
+                title = "Precipitation",
+                data = "Any"
+            )
+        )
+        return mainScreenItems
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.cardsRecyclerView)
+        val mainScreenItems = createMainScreenItems()
 
-        val cardsLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.cardsRecyclerView.layoutManager = cardsLayoutManager
-        val adapter = WeatherCardListAdapter(listOf())
-        binding.cardsRecyclerView.adapter = adapter
-
-        binding.cardsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val listSize = adapter.listSize()
-                val firstVisiblePosition = cardsLayoutManager.findFirstVisibleItemPosition()
-                if (firstVisiblePosition > listSize && firstVisiblePosition%listSize == 0) {
-                    recyclerView.scrollToPosition(listSize)
-                } else if (firstVisiblePosition == listSize - 1){
-                    recyclerView.scrollToPosition(listSize*2)
-                }
-            }
-        })
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.layoutManager = layoutManager
+        val adapter = MainScreenItemListAdapter(mainScreenItems)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.addItemDecoration(MarginItemDecoration(requireContext(), marginHorizontalDp = 20, marginVerticalDp = 10))
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.forecast.collect {
-                    adapter.updateData(it)
+                    val newMainScreenItems = createMainScreenItems(it)
+                    adapter.updateData(newMainScreenItems)
                 }
             }
         }
@@ -140,11 +149,6 @@ class MainScreenFragment: Fragment() {
         cities.forEach { city ->
             viewModel.getCityForecast(city)
         }
-
-        val quickMenuLayoutManager = GridLayoutManager(context,4)
-        binding.quickMenuRecyclerView.layoutManager = quickMenuLayoutManager
-        val quickMenuListAdapter = QuickMenuListAdapter(menuItems)
-        binding.quickMenuRecyclerView.adapter = quickMenuListAdapter
     }
 
 }

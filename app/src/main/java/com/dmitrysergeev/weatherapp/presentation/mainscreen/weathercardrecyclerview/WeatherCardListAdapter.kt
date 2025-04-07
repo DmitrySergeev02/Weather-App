@@ -38,8 +38,7 @@ class WeatherCardListAdapter(
     }
 
     override fun onBindViewHolder(holder: WeatherCardViewHolder, position: Int) {
-        val realPosition = position % this.listSize()
-        val card: ForecastWeatherResponse = cards[realPosition]
+        val card: ForecastWeatherResponse = cards[position]
         holder.bind(card)
     }
 
@@ -48,7 +47,5 @@ class WeatherCardListAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int = cards.size*3
-
-    fun listSize(): Int = cards.size
+    override fun getItemCount(): Int = cards.size
 }
