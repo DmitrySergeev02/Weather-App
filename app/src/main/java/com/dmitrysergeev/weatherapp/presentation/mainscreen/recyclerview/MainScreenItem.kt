@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen
+package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
 data class MainScreenItem(
     val title: String,

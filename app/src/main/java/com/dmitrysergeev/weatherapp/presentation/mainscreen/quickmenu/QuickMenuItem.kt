@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen.menu
+package com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu
 
 import androidx.annotation.DrawableRes
 

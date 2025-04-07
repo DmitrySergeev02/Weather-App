@@ -1,17 +1,14 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen
+package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
-
 class MainScreenItemListAdapter(
-    private val menuItemList: List<MainScreenItem>
+    private var menuItemList: List<MainScreenItem>
 ): RecyclerView.Adapter<MainScreenItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainScreenItemViewHolder {
@@ -33,17 +30,10 @@ class MainScreenItemListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         val currentItem = menuItemList[position]
-        return if (currentItem.data is List<*>){
-            when(currentItem.data[0]){
-                is ForecastWeatherResponse -> WEATHER_CARDS_VIEW
-                is QuickMenuItem -> QUICK_MENU_VIEW
-                else -> -1
-            }
-        } else {
-            when(currentItem.data){
-                is String -> TMP_MENU_ITEM_VIEW
-                else -> -1
-            }
+        return when(currentItem.title){
+            "Weather Cards" -> WEATHER_CARDS_VIEW
+            "Quick Menu" -> QUICK_MENU_VIEW
+            else -> TMP_MENU_ITEM_VIEW
         }
     }
 
@@ -51,6 +41,11 @@ class MainScreenItemListAdapter(
         val item = menuItemList[position]
         val itemViewType = getItemViewType(position)
         holder.onBind(item, itemViewType)
+    }
+
+    fun updateData(newMenuItemList: List<MainScreenItem>){
+        menuItemList = newMenuItemList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = menuItemList.size

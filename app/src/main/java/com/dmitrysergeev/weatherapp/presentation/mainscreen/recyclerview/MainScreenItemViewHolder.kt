@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen
+package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,8 +9,8 @@ import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuItem
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.menu.QuickMenuListAdapter
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuItem
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 
 class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.ViewHolder(binding.root){
@@ -21,6 +21,7 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 (binding as WeatherCardsRecyclerViewBinding).apply {
                     val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
 
+                    cardsRecyclerView.onFlingListener = null;
                     val snapHelper = PagerSnapHelper()
                     snapHelper.attachToRecyclerView(cardsRecyclerView)
 
