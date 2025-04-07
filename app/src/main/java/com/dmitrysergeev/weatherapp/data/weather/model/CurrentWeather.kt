@@ -21,7 +21,7 @@ data class CurrentWeather(
     val pressureMb: Double,
     val tempC: Double,
     val tempF: Double,
-    val uv: Int,
+    val uv: Float,
     val visKm: Double,
     val visMiles: Double,
     val windDegree: Int,
