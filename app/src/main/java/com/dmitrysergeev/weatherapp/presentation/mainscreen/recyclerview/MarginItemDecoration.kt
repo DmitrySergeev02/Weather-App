@@ -28,9 +28,17 @@ class MarginItemDecoration(
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.top = toPixels(marginTopDp)
-        outRect.bottom = toPixels(marginBottomDp)
-        outRect.left = toPixels(marginStartDp)
-        outRect.right = toPixels(marginEndDp)
+
+        val viewType = parent.layoutManager?.getItemViewType(view)
+
+        when (viewType){
+            MainScreenItemListAdapter.WEATHER_CARDS_VIEW -> {}
+            else-> {
+                outRect.top = toPixels(marginTopDp)
+                outRect.bottom = toPixels(marginBottomDp)
+                outRect.left = toPixels(marginStartDp)
+                outRect.right = toPixels(marginEndDp)
+            }
+        }
     }
 }
