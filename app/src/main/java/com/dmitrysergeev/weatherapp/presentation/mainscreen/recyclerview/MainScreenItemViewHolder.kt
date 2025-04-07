@@ -20,29 +20,10 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
             MainScreenItemListAdapter.WEATHER_CARDS_VIEW -> {
                 (binding as WeatherCardsRecyclerViewBinding).apply {
                     val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
-
-                    cardsRecyclerView.onFlingListener = null;
-                    val snapHelper = PagerSnapHelper()
-                    snapHelper.attachToRecyclerView(cardsRecyclerView)
-
                     val cardsLayoutManager = LinearLayoutManager(root.context, LinearLayoutManager.HORIZONTAL, false)
                     cardsRecyclerView.layoutManager = cardsLayoutManager
                     val adapter = WeatherCardListAdapter(weatherForecasts)
                     cardsRecyclerView.adapter = adapter
-
-                    cardsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                            super.onScrolled(recyclerView, dx, dy)
-
-                            val listSize = adapter.listSize()
-                            val firstVisiblePosition = cardsLayoutManager.findFirstVisibleItemPosition()
-                            if (firstVisiblePosition > listSize && firstVisiblePosition%listSize == 0) {
-                                recyclerView.scrollToPosition(listSize)
-                            } else if (firstVisiblePosition == listSize - 1){
-                                recyclerView.scrollToPosition(listSize*2)
-                            }
-                        }
-                    })
                 }
             }
             MainScreenItemListAdapter.QUICK_MENU_VIEW -> {
