@@ -37,7 +37,7 @@ class MainScreenFragment: Fragment() {
         return binding.root
     }
 
-    private fun createMainScreenItems(weatherResponsesList: List<ForecastWeatherResponse> = emptyList()): List<MainScreenMenuItem>{
+    private fun createMainScreenItems(weatherResponsesList: List<ForecastWeatherResponse> = emptyList(), layoutManager: LinearLayoutManager): List<MainScreenMenuItem>{
         val mainScreenMenuItems: ArrayList<MainScreenMenuItem> = arrayListOf(
             MainScreenMenuItem(
                 title = "Weather Cards",
@@ -50,6 +50,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.sunny,
                 doOnClick = {
+                    layoutManager.scrollToPosition(2)
                     Log.d("TAAAG", "UV Index")
                 }
             ),
@@ -58,6 +59,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.air_quality,
                 doOnClick = {
+                    layoutManager.scrollToPosition(3+1)
                     Log.d("TAAAG", "Air Quality")
                 }
             ),
@@ -66,6 +68,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.humidity,
                 doOnClick = {
+                    layoutManager.scrollToPosition(4+1)
                     Log.d("TAAAG", "Visibility")
                 }
             ),
@@ -74,6 +77,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.heavy_rain,
                 doOnClick = {
+                    layoutManager.scrollToPosition(5+1)
                     Log.d("TAAAG", "Precipitation")
                 }
             ),
@@ -82,6 +86,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.hurricane,
                 doOnClick = {
+                    layoutManager.scrollToPosition(6+1)
                     Log.d("TAAAG", "Hurricane")
                 }
             ),
@@ -90,6 +95,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.eye_alt,
                 doOnClick = {
+                    layoutManager.scrollToPosition(7+1)
                     Log.d("TAAAG", "Visibility")
                 }
             ),
@@ -98,6 +104,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.wind,
                 doOnClick = {
+                    layoutManager.scrollToPosition(8+1)
                     Log.d("TAAAG", "Wind")
                 }
             ),
@@ -106,6 +113,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.radar,
                 doOnClick = {
+                    layoutManager.scrollToPosition(9+1)
                     Log.d("TAAAG", "Radar")
                 }
             ),
@@ -114,6 +122,7 @@ class MainScreenFragment: Fragment() {
                 data = "",
                 iconId = R.drawable.earthquake,
                 doOnClick = {
+                    layoutManager.scrollToPosition(10)
                     Log.d("TAAAG", "Earthquake")
                 }
             )
@@ -132,10 +141,9 @@ class MainScreenFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mainScreenMenuItems = createMainScreenItems()
-
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
+        val mainScreenMenuItems = createMainScreenItems(layoutManager = layoutManager)
         val adapter = MainScreenItemListAdapter(mainScreenMenuItems)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(MarginItemDecoration(requireContext(), marginHorizontalDp = 20, marginVerticalDp = 10))
@@ -143,7 +151,7 @@ class MainScreenFragment: Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.forecast.collect {
-                    val newMainScreenItems = createMainScreenItems(it)
+                    val newMainScreenItems = createMainScreenItems(it, layoutManager)
                     adapter.updateData(newMainScreenItems)
                 }
             }
