@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuItemBinding
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenMenuItem
 
 class QuickMenuItemViewHolder(private val binding: QuickMenuItemBinding): RecyclerView.ViewHolder(binding.root){
 
-    fun bind(quickMenuItem: QuickMenuItem){
+    fun bind(quickMenuItem: MainScreenMenuItem){
         binding.title.text = quickMenuItem.title
         binding.icon.setImageResource(quickMenuItem.iconId)
         binding.cardView.setOnClickListener {
@@ -18,7 +19,7 @@ class QuickMenuItemViewHolder(private val binding: QuickMenuItemBinding): Recycl
 }
 
 class QuickMenuListAdapter(
-    private val quickMenuList: List<QuickMenuItem>
+    private val quickMenuList: List<MainScreenMenuItem>
 ): RecyclerView.Adapter<QuickMenuItemViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickMenuItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
