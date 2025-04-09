@@ -11,12 +11,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
 import com.dmitrysergeev.weatherapp.databinding.FragmentMainScreenBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuItem
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenItem
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenMenuItem
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MainScreenItemListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview.MarginItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,71 +27,6 @@ class MainScreenFragment: Fragment() {
     private val viewModel: MainScreenViewModel by viewModels()
 
     private val cities: List<String> = listOf("Saint-Petersburg", "Moscow", "Tver")
-    private val menuItems: List<QuickMenuItem> = listOf(
-        QuickMenuItem(
-            title = "UV Index",
-            iconId = R.drawable.sunny,
-            doOnClick = {
-                Log.d("TAAAG", "UV Index")
-            }
-        ),
-        QuickMenuItem(
-            title = "Air Quality",
-            iconId = R.drawable.air_quality,
-            doOnClick = {
-                Log.d("TAAAG", "Air Quality")
-            }
-        ),
-        QuickMenuItem(
-            title = "Visibility",
-            iconId = R.drawable.humidity,
-            doOnClick = {
-                Log.d("TAAAG", "Visibility")
-            }
-        ),
-        QuickMenuItem(
-            title = "Precipitation",
-            iconId = R.drawable.heavy_rain,
-            doOnClick = {
-                Log.d("TAAAG", "Precipitation")
-            }
-        ),
-        QuickMenuItem(
-            title = "Hurricane",
-            iconId = R.drawable.hurricane,
-            doOnClick = {
-                Log.d("TAAAG", "Hurricane")
-            }
-        ),
-        QuickMenuItem(
-            title = "Visibility",
-            iconId = R.drawable.eye_alt,
-            doOnClick = {
-                Log.d("TAAAG", "Visibility")
-            }
-        ),
-        QuickMenuItem(
-            title = "Wind",
-            iconId = R.drawable.wind,
-            doOnClick = {
-                Log.d("TAAAG", "Wind")
-            }
-        ),
-        QuickMenuItem(
-            title = "Radar",
-            iconId = R.drawable.radar,
-            doOnClick = {
-                Log.d("TAAAG", "Radar")
-            }
-        ),
-        QuickMenuItem(
-            title = "Earthquake",
-            iconId = R.drawable.earthquake,
-            doOnClick = {
-                Log.d("TAAAG", "Earthquake")
-            }
-        )
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,36 +37,106 @@ class MainScreenFragment: Fragment() {
         return binding.root
     }
 
-    private fun createMainScreenItems(weatherResponsesList: List<ForecastWeatherResponse> = emptyList()): List<MainScreenItem>{
-        val mainScreenItems: List<MainScreenItem> = listOf(
-            MainScreenItem(
+    private fun createMainScreenItems(weatherResponsesList: List<ForecastWeatherResponse> = emptyList()): List<MainScreenMenuItem>{
+        val mainScreenMenuItems: ArrayList<MainScreenMenuItem> = arrayListOf(
+            MainScreenMenuItem(
                 title = "Weather Cards",
-                data = weatherResponsesList
+                data = weatherResponsesList,
+                iconId = 0,
+                doOnClick = {}
             ),
-            MainScreenItem(
-                title = "Quick Menu",
-                data = menuItems
+            MainScreenMenuItem(
+                title = "UV Index",
+                data = "",
+                iconId = R.drawable.sunny,
+                doOnClick = {
+                    Log.d("TAAAG", "UV Index")
+                }
             ),
-            MainScreenItem(
-                title = "Forecast",
-                data = "asda"
+            MainScreenMenuItem(
+                title = "Air Quality",
+                data = "",
+                iconId = R.drawable.air_quality,
+                doOnClick = {
+                    Log.d("TAAAG", "Air Quality")
+                }
             ),
-            MainScreenItem(
+            MainScreenMenuItem(
+                title = "Visibility",
+                data = "",
+                iconId = R.drawable.humidity,
+                doOnClick = {
+                    Log.d("TAAAG", "Visibility")
+                }
+            ),
+            MainScreenMenuItem(
                 title = "Precipitation",
-                data = "Any"
+                data = "",
+                iconId = R.drawable.heavy_rain,
+                doOnClick = {
+                    Log.d("TAAAG", "Precipitation")
+                }
+            ),
+            MainScreenMenuItem(
+                title = "Hurricane",
+                data = "",
+                iconId = R.drawable.hurricane,
+                doOnClick = {
+                    Log.d("TAAAG", "Hurricane")
+                }
+            ),
+            MainScreenMenuItem(
+                title = "Visibility",
+                data = "",
+                iconId = R.drawable.eye_alt,
+                doOnClick = {
+                    Log.d("TAAAG", "Visibility")
+                }
+            ),
+            MainScreenMenuItem(
+                title = "Wind",
+                data = "",
+                iconId = R.drawable.wind,
+                doOnClick = {
+                    Log.d("TAAAG", "Wind")
+                }
+            ),
+            MainScreenMenuItem(
+                title = "Radar",
+                data = "",
+                iconId = R.drawable.radar,
+                doOnClick = {
+                    Log.d("TAAAG", "Radar")
+                }
+            ),
+            MainScreenMenuItem(
+                title = "Earthquake",
+                data = "",
+                iconId = R.drawable.earthquake,
+                doOnClick = {
+                    Log.d("TAAAG", "Earthquake")
+                }
             )
         )
-        return mainScreenItems
+        mainScreenMenuItems.add(1, MainScreenMenuItem(
+            title = "Quick Menu",
+            data = mainScreenMenuItems,
+            iconId = 0,
+            doOnClick = {
+
+            }
+        ))
+        return mainScreenMenuItems.toList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mainScreenItems = createMainScreenItems()
+        val mainScreenMenuItems = createMainScreenItems()
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
-        val adapter = MainScreenItemListAdapter(mainScreenItems)
+        val adapter = MainScreenItemListAdapter(mainScreenMenuItems)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(MarginItemDecoration(requireContext(), marginHorizontalDp = 20, marginVerticalDp = 10))
 

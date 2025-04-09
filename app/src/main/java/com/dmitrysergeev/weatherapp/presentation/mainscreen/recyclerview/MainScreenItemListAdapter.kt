@@ -8,7 +8,7 @@ import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 class MainScreenItemListAdapter(
-    private var menuItemList: List<MainScreenItem>
+    private var menuItemList: List<MainScreenMenuItem>
 ): RecyclerView.Adapter<MainScreenItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainScreenItemViewHolder {
@@ -43,7 +43,7 @@ class MainScreenItemListAdapter(
         holder.onBind(item, itemViewType)
     }
 
-    fun updateData(newMenuItemList: List<MainScreenItem>){
+    fun updateData(newMenuItemList: List<MainScreenMenuItem>){
         menuItemList = newMenuItemList
         notifyDataSetChanged()
     }
