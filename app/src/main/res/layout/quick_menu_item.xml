@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textAppearance="@style/Body3_std"
+            android:textColor="@color/my_black"
             tools:text="UV index" />
 
     </LinearLayout>

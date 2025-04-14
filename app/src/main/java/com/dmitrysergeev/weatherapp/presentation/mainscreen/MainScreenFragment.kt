@@ -74,7 +74,7 @@ class MainScreenFragment: Fragment() {
             ),
             MainScreenMenuItem(
                 title = "Precipitation",
-                data = "",
+                data = weatherResponsesList,
                 iconId = R.drawable.heavy_rain,
                 doOnClick = {
                     layoutManager.scrollToPosition(5+1)

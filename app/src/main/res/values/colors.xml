@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_screen_item_color">#FFA098AE</color>
+    <color name="my_black">#FF363B64</color>
 </resources>
