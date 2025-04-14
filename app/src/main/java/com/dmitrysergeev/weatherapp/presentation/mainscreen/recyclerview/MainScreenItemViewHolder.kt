@@ -1,6 +1,6 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,19 +42,21 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 }
             }
             MainScreenItemListAdapter.PRECIPITATION_ITEM_VIEW -> {
+                val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                val currentForecast = weatherForecasts[0]
                 (binding as PrecipitationMainScreenItemBinding).apply {
-                    humidityItem.setTitle("Humidity")
-                    humidityItem.setIconSrc(AppCompatResources.getDrawable(root.context,R.drawable.humidity))
-                    humidityItem.value.text = "88%"
-                    rainProbabilityItem.setTitle("Rain Probability")
-                    rainProbabilityItem.setIconSrc(AppCompatResources.getDrawable(root.context,R.drawable.humidity))
-                    rainProbabilityItem.value.text = "88%"
-                    dewPointItem.setTitle("Dew Point")
-                    dewPointItem.setIconSrc(AppCompatResources.getDrawable(root.context,R.drawable.humidity))
-                    dewPointItem.value.text = "88%"
-                    cloudOverItem.setTitle("Cloud over")
-                    cloudOverItem.setIconSrc(AppCompatResources.getDrawable(root.context,R.drawable.humidity))
-                    cloudOverItem.value.text = "88%"
+                    humidityItem.title.text = "Humidity"
+                    humidityItem.icon.setImageResource(R.drawable.humidity_in_box)
+                    humidityItem.value.text = root.context.getString(R.string.percent_value, currentForecast.currentWeather.humidity)
+                    rainProbabilityItem.title.text = "Rain Probability"
+                    rainProbabilityItem.icon.setImageResource(R.drawable.umbrella_in_box)
+                    rainProbabilityItem.value.text = root.context.getString(R.string.percent_value, currentForecast.forecast.forecastDay[0].dayApi.dailyChanceOfRain)
+                    dewPointItem.title.text = "Dew Point"
+                    dewPointItem.icon.setImageResource(R.drawable.dew_point_in_box)
+                    dewPointItem.value.text = root.context.getString(R.string.percent_value, currentForecast.currentWeather.dewPointC.toInt())
+                    cloudOverItem.title.text = "Cloud over"
+                    cloudOverItem.icon.setImageResource(R.drawable.cloudy_in_box)
+                    cloudOverItem.value.text = root.context.getString(R.string.percent_value, currentForecast.currentWeather.cloud)
                 }
             }
         }
