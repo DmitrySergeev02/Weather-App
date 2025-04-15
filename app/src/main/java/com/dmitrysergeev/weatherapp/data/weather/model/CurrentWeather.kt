@@ -29,5 +29,6 @@ data class CurrentWeather(
     val windKph: Double,
     val windMph: Double,
     val windchillC: Double,
-    val windchillF: Double
+    val windchillF: Double,
+    val airQuality: AirQuality
 )
