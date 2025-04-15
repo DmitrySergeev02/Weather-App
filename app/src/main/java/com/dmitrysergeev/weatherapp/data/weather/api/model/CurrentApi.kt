@@ -34,7 +34,8 @@ data class CurrentApi(
     @Json(name = "wind_kph") val windKph: Double,
     @Json(name = "wind_mph") val windMph: Double,
     @Json(name = "windchill_c") val windchillC: Double,
-    @Json(name = "windchill_f") val windchillF: Double
+    @Json(name = "windchill_f") val windchillF: Double,
+    @Json(name = "air_quality") val airQualityApi: AirQualityApi
 ) {
 
     fun toCurrentWeather(): CurrentWeather = CurrentWeather(
@@ -66,7 +67,8 @@ data class CurrentApi(
         windKph,
         windMph,
         windchillC,
-        windchillF
+        windchillF,
+        airQualityApi.toAirQuality()
     )
 
 }

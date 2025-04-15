@@ -16,7 +16,7 @@ class WeatherInterceptor @Inject constructor(): Interceptor {
 
         val newUrl: HttpUrl = originalRequest.url.newBuilder()
             .addQueryParameter("key", API_KEY)
-            .addQueryParameter("aqi","no")
+            .addQueryParameter("aqi","yes")
             .build()
 
         val newRequest: Request = originalRequest.newBuilder()
