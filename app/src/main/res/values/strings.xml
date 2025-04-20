@@ -10,4 +10,5 @@
     <string name="precipitation">Precipitation</string>
     <string name="in_last_24_hours">in last 24 hours</string>
     <string name="percent_value">%1$d%%</string>
+    <string name="air_quality">Air quality</string>
 </resources>
