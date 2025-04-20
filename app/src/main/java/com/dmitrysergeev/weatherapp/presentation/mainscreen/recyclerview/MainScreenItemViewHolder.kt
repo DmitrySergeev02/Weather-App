@@ -1,16 +1,18 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
-import androidx.appcompat.widget.AppCompatTextView
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.data.weather.model.ForecastWeatherResponse
+import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.MyProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 
@@ -57,6 +59,15 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                     cloudOverItem.title.text = "Cloud over"
                     cloudOverItem.icon.setImageResource(R.drawable.cloudy_in_box)
                     cloudOverItem.value.text = root.context.getString(R.string.percent_value, currentForecast.currentWeather.cloud)
+                }
+            }
+            MainScreenItemListAdapter.AIR_QUALITY_VIEW -> {
+                (binding as AirQualityMainScreenItemBinding).apply {
+                    root.setOnClickListener {
+                        val value = (Math.random()*100).toInt()
+                        Log.d(MyProgressBar.TAG,value.toString())
+                        airQualityProgressBar.setProgress(value,true)
+                    }
                 }
             }
         }

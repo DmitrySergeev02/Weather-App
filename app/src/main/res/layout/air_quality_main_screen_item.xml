@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:textAppearance="@style/Headline4"
             android:textColor="@color/yellow"
-            tools:text="93"
+            android:text="93"
             />
 
         <TextView
@@ -44,7 +45,7 @@
             android:layout_marginStart="10dp"
             android:textAppearance="@style/Body3"
             android:textColor="@color/my_black"
-            tools:text="Moderate"
+            android:text="Moderate"
             />
 
         <TextView
@@ -57,7 +58,7 @@
             android:layout_marginEnd="10dp"
             android:textAppearance="@style/Body4_italic_light"
             android:textColor="@color/main_screen_item_color"
-            tools:text="Air quality is considered satisfactory, and air pollution poses little or no risk"/>
+            android:text="Air quality is considered satisfactory, and air pollution poses little or no risk"/>
 
         <ImageView
             android:id="@+id/help_button"
@@ -67,6 +68,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/circle_information"
             />
+
+        <com.dmitrysergeev.weatherapp.presentation.mainscreen.MyProgressBar
+            android:id="@+id/air_quality_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pm25_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
