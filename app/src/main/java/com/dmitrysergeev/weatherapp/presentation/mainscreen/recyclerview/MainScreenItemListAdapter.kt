@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
@@ -28,7 +29,9 @@ class MainScreenItemListAdapter(
             PRECIPITATION_ITEM_VIEW -> {
                 binding = PrecipitationMainScreenItemBinding.inflate(inflater,parent,false)
             }
-
+            AIR_QUALITY_VIEW -> {
+                binding = AirQualityMainScreenItemBinding.inflate(inflater, parent, false)
+            }
         }
         return MainScreenItemViewHolder(binding!!)
     }
@@ -39,6 +42,7 @@ class MainScreenItemListAdapter(
             "Weather Cards" -> WEATHER_CARDS_VIEW
             "Quick Menu" -> QUICK_MENU_VIEW
             "Precipitation" -> PRECIPITATION_ITEM_VIEW
+            "Air Quality" -> AIR_QUALITY_VIEW
             else -> TMP_MENU_ITEM_VIEW
         }
     }
@@ -61,5 +65,6 @@ class MainScreenItemListAdapter(
         const val QUICK_MENU_VIEW = 1
         const val TMP_MENU_ITEM_VIEW = 2
         const val PRECIPITATION_ITEM_VIEW = 3
+        const val AIR_QUALITY_VIEW = 4
     }
 }

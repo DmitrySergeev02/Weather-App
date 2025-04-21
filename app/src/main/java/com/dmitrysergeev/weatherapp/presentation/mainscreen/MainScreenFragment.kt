@@ -56,7 +56,7 @@ class MainScreenFragment: Fragment() {
             ),
             MainScreenMenuItem(
                 title = "Air Quality",
-                data = "",
+                data = weatherResponsesList,
                 iconId = R.drawable.air_quality,
                 doOnClick = {
                     layoutManager.scrollToPosition(3+1)
