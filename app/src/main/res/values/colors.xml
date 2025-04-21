@@ -5,4 +5,5 @@
     <color name="main_screen_item_color">#FFA098AE</color>
     <color name="my_black">#FF363B64</color>
     <color name="yellow">#FFFFD542</color>
+    <color name="empty_progress_bar">#FFF1F1F1</color>
 </resources>

@@ -12,7 +12,8 @@ import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBindi
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.MyProgressBar
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.MyProgressBar
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.Pm25Data
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 
@@ -62,12 +63,46 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 }
             }
             MainScreenItemListAdapter.AIR_QUALITY_VIEW -> {
+                val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                if (weatherForecasts.isEmpty())
+                    return
+                val airQuality = weatherForecasts[0].currentWeather.airQuality
                 (binding as AirQualityMainScreenItemBinding).apply {
                     root.setOnClickListener {
                         val value = (Math.random()*100).toInt()
                         Log.d(MyProgressBar.TAG,value.toString())
                         airQualityProgressBar.setProgress(value,true)
                     }
+                    val pm25Data = Pm25Data(airQuality.pm2_5.toInt())
+
+                    levelText.text = root.context.getString(pm25Data.getLevel())
+                    levelDescription.text = root.context.getString(pm25Data.getDescription())
+
+                    pm25Text.text = airQuality.pm2_5.toInt().toString()
+
+                    pm25.labelText.text = "PM2.5"
+                    pm25.valueText.text = airQuality.pm2_5.toInt().toString()
+                    pm25.progressBar.progress = airQuality.pm2_5.toInt()
+
+                    pm10.labelText.text = "PM10"
+                    pm10.valueText.text = airQuality.pm10.toInt().toString()
+                    pm10.progressBar.progress = airQuality.pm10.toInt()
+
+                    o3.labelText.text = "O3"
+                    o3.valueText.text = airQuality.o3.toInt().toString()
+                    o3.progressBar.progress = airQuality.o3.toInt()
+
+                    so2.labelText.text = "SO2"
+                    so2.valueText.text = airQuality.so2.toInt().toString()
+                    so2.progressBar.progress = airQuality.so2.toInt()
+
+                    no2.labelText.text = "NO2"
+                    no2.valueText.text = airQuality.no2.toInt().toString()
+                    so2.progressBar.progress = airQuality.so2.toInt()
+
+                    co.labelText.text = "Co"
+                    co.valueText.text = airQuality.co.toInt().toString()
+                    co.progressBar.progress = airQuality.co.toInt()
                 }
             }
         }

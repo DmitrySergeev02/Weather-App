@@ -69,7 +69,7 @@
             android:src="@drawable/circle_information"
             />
 
-        <com.dmitrysergeev.weatherapp.presentation.mainscreen.MyProgressBar
+        <com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.MyProgressBar
             android:id="@+id/air_quality_progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
@@ -79,6 +79,63 @@
             android:progress="56"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pm25_text" />
+
+        <include
+            android:id="@+id/pm25"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/air_quality_progress_bar"
+            />
+
+        <include
+            android:id="@+id/pm10"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/o3"
+            app:layout_constraintStart_toEndOf="@+id/pm25"
+            app:layout_constraintTop_toBottomOf="@+id/air_quality_progress_bar"
+            />
+
+        <include
+            android:id="@+id/o3"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/air_quality_progress_bar"
+            />
+
+        <include
+            android:id="@+id/so2"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pm25"
+            />
+
+        <include
+            android:id="@+id/co"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/so2"
+            />
+
+        <include
+            android:id="@+id/no2"
+            layout="@layout/air_quality_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/so2"
+            app:layout_constraintEnd_toStartOf="@id/co"
+            app:layout_constraintTop_toTopOf="@+id/so2"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

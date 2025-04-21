@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen
+package com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,7 +11,6 @@ import android.graphics.RectF
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.ProgressBar
 import androidx.collection.arrayMapOf
 import androidx.core.graphics.toColorInt
@@ -84,11 +83,11 @@ class MyProgressBar(
                 canvas.drawRoundRect(newBounds,10*context.resources.displayMetrics.density,10*context.resources.displayMetrics.density, paint)
 
                 // DebugMode
-                val myPaint = Paint()
-                myPaint.strokeWidth = 1f
-                myPaint.style = Paint.Style.STROKE
-                myPaint.color = Color.BLACK
-                canvas.drawRect(bounds, myPaint)
+//                val myPaint = Paint()
+//                myPaint.strokeWidth = 1f
+//                myPaint.style = Paint.Style.STROKE
+//                myPaint.color = Color.BLACK
+//                canvas.drawRect(bounds, myPaint)
             }
 
             override fun setAlpha(alpha: Int) {
