@@ -60,7 +60,7 @@
             app:layout_constraintTop_toTopOf="@id/visibility_icon"
             app:layout_constraintEnd_toStartOf="@id/visibility_value"
             android:layout_marginStart="10dp"
-            tools:text="Poor visibility, vision's not clear"
+            android:text="Poor visibility, vision's not clear"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

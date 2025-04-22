@@ -11,6 +11,7 @@ import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
+import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.MyProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.Pm25Data
@@ -46,6 +47,8 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
             }
             MainScreenItemListAdapter.PRECIPITATION_ITEM_VIEW -> {
                 val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                if (weatherForecasts.isEmpty())
+                    return
                 val currentForecast = weatherForecasts[0]
                 (binding as PrecipitationMainScreenItemBinding).apply {
                     humidityItem.title.text = "Humidity"
@@ -103,6 +106,15 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                     co.labelText.text = "Co"
                     co.valueText.text = airQuality.co.toInt().toString()
                     co.progressBar.progress = airQuality.co.toInt()
+                }
+            }
+            MainScreenItemListAdapter.VISIBILITY_VIEW -> {
+                val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                if (weatherForecasts.isEmpty())
+                    return
+                val visibility = weatherForecasts[0].currentWeather.visKm.toInt()
+                (binding as VisibilityMainScreenItemBinding).apply {
+                    visibilityValue.text = root.context.getString(R.string.visibility_value_km, visibility)
                 }
             }
         }
