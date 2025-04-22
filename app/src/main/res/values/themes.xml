@@ -46,6 +46,10 @@
         <item name="fontFamily">sans-serif-black</item>
     </style>
 
+    <style name="Headline4_medium" parent="Headline4">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
     <style name="Headline5">
         <item name="android:textSize">24sp</item>
         <item name="fontStyle">normal</item>

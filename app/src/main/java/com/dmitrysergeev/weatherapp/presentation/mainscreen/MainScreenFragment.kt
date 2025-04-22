@@ -64,7 +64,7 @@ class MainScreenFragment: Fragment() {
                 }
             ),
             MainScreenMenuItem(
-                title = "Visibility",
+                title = "Another Item",
                 data = "",
                 iconId = R.drawable.humidity,
                 doOnClick = {
@@ -92,7 +92,7 @@ class MainScreenFragment: Fragment() {
             ),
             MainScreenMenuItem(
                 title = "Visibility",
-                data = "",
+                data = weatherResponsesList,
                 iconId = R.drawable.eye_alt,
                 doOnClick = {
                     layoutManager.scrollToPosition(7+1)
