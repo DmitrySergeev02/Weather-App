@@ -69,7 +69,7 @@
             android:src="@drawable/circle_information"
             />
 
-        <com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.MyProgressBar
+        <com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.AirQualityProgressBar
             android:id="@+id/air_quality_progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
