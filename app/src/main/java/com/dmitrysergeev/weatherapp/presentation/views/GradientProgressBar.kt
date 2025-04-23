@@ -1,4 +1,4 @@
-package com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality
+package com.dmitrysergeev.weatherapp.presentation.views
 
 import android.content.Context
 import android.graphics.Canvas
@@ -15,12 +15,12 @@ import android.widget.ProgressBar
 import androidx.collection.arrayMapOf
 import androidx.core.graphics.toColorInt
 
-class MyProgressBar(
+open class GradientProgressBar(
     context: Context,
     attrs: AttributeSet
 ): ProgressBar(context, attrs) {
 
-    private val colorMap: Map<Float,Int> = arrayMapOf(
+    protected val colorMap: Map<Float,Int> = arrayMapOf(
          0f to "#28FF30".toColorInt(),
          0.22f to "#F0FF47".toColorInt(),
          0.5f to "#FFCC47".toColorInt(),
@@ -29,7 +29,7 @@ class MyProgressBar(
          1f to "#76000E".toColorInt()
     )
 
-    private fun getColor(value: Float): Int {
+    protected fun getColor(value: Float): Int {
         for (i in 0 until colorMap.size){
             if (value>=colorMap.keys.toFloatArray()[i] && value<colorMap.keys.toFloatArray()[i+1]){
                 val startColor = colorMap.values.toIntArray()[i]
@@ -81,13 +81,6 @@ class MyProgressBar(
                     bounds.height()/2+1*context.resources.displayMetrics.density
                 )
                 canvas.drawRoundRect(newBounds,10*context.resources.displayMetrics.density,10*context.resources.displayMetrics.density, paint)
-
-                // DebugMode
-//                val myPaint = Paint()
-//                myPaint.strokeWidth = 1f
-//                myPaint.style = Paint.Style.STROKE
-//                myPaint.color = Color.BLACK
-//                canvas.drawRect(bounds, myPaint)
             }
 
             override fun setAlpha(alpha: Int) {
@@ -104,26 +97,6 @@ class MyProgressBar(
         progressDrawable = gradientDrawable
     }
 
-    private val circlePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        style = Paint.Style.FILL
-        color = Color.BLACK
-    }
-    
-    private val strokePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        style = Paint.Style.FILL
-        color = Color.WHITE
-    }
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        val relativeProgress = progress.toFloat()/max
-        val cX = relativeProgress*width
-        val color = getColor(relativeProgress)
-        circlePaint.color = color
-        canvas.drawCircle(cX, height/2f, 3*context.resources.displayMetrics.density, strokePaint)
-        canvas.drawCircle(cX, height/2f, 2*context.resources.displayMetrics.density, circlePaint)
-    }
-
     override fun setProgress(progress: Int, animate: Boolean) {
         super.setProgress(progress, animate)
         invalidate()
@@ -135,6 +108,6 @@ class MyProgressBar(
     }
 
     companion object {
-        const val TAG = "MyProgressBar"
+        const val TAG = "GradientProgressBar"
     }
 }

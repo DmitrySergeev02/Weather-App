@@ -13,7 +13,7 @@ import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
 import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
-import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.MyProgressBar
+import com.dmitrysergeev.weatherapp.presentation.views.GradientProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.Pm25Data
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
@@ -73,7 +73,7 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 (binding as AirQualityMainScreenItemBinding).apply {
                     root.setOnClickListener {
                         val value = (Math.random()*100).toInt()
-                        Log.d(MyProgressBar.TAG,value.toString())
+                        Log.d(GradientProgressBar.TAG,value.toString())
                         airQualityProgressBar.setProgress(value,true)
                     }
                     val pm25Data = Pm25Data(airQuality.pm2_5.toInt())
