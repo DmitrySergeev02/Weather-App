@@ -41,9 +41,9 @@ class UvIndexProgressBar(
         style = Paint.Style.STROKE
     }
 
-    private fun getTrianglePath(dy: Float): Path {
+    private fun getTrianglePath(dy: Float, cX: Float): Path {
         val path = Path()
-        path.moveTo(width/2f, height-dy-12.5f-5)
+        path.moveTo(cX, height-dy-12.5f-5)
         path.rLineTo(10f,12.5f)
         path.rLineTo(-20f,0f)
         path.rLineTo(10f,-12.5f)
@@ -64,16 +64,18 @@ class UvIndexProgressBar(
         val startX = width - textPaint.measureText("Extreme danger")
         canvas.drawText("Extreme danger", startX, height.toFloat()-textPaint.fontMetrics.descent, textPaint)
 
+        val cX = width * (progress/max.toFloat())
+
         boundPaint.style = Paint.Style.FILL
-        canvas.drawPath(getTrianglePath(dy), boundPaint)
+        canvas.drawPath(getTrianglePath(dy, cX), boundPaint)
         boundPaint.style = Paint.Style.STROKE
         boundPaint.strokeWidth = 2f
         boundPaint.color = Color.WHITE
 //        boundPaint.strokeJoin = Paint.Join.ROUND
-        canvas.drawPath(getTrianglePath(dy),boundPaint)
+        canvas.drawPath(getTrianglePath(dy, cX),boundPaint)
 
         val drawable = AppCompatResources.getDrawable(context, R.drawable.sunny)
-        drawable?.setBounds(width/2-32,height/2-32,width/2+32,height/2+32)
+        drawable?.setBounds(cX.toInt()-32,height/2-32,cX.toInt()+32,height/2+32)
         drawable?.draw(canvas)
     }
 

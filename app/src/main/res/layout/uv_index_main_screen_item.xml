@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        >
+
+        <TextView
+            android:id="@+id/uv_index_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/uv_index"
+            android:textColor="@color/main_screen_item_color"
+            android:textAppearance="@style/Body3_std"
+            />
+
+        <TextView
+            android:id="@+id/uv_index_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "0.5"
+            app:layout_constraintTop_toBottomOf="@id/uv_index_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/Medium_black"
+            android:textColor="@color/my_black"
+            />
+
+        <TextView
+            android:id="@+id/uv_index_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Moderate"
+            app:layout_constraintTop_toTopOf="@id/uv_index_value"
+            app:layout_constraintStart_toEndOf="@id/uv_index_value"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/Body2"
+            android:textColor="@color/my_black"
+            />
+
+        <ImageView
+            android:id="@+id/help_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintTop_toTopOf="@id/uv_index_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/circle_information"
+            />
+
+        <com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexProgressBar
+            android:id="@+id/uv_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/uv_index_value"
+            android:max="13"
+            android:progress="12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

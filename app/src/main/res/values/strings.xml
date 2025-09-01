@@ -25,4 +25,5 @@
     <string name="air_quality_level_dangerous_description">Health alert: everyone may experience more serious health effects</string>
     <string name="visibility">Visibility</string>
     <string name="visibility_value_km">%1$d Km</string>
+    <string name="uv_index">UV index</string>
 </resources>

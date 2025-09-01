@@ -47,7 +47,7 @@ class MainScreenFragment: Fragment() {
             ),
             MainScreenMenuItem(
                 title = "UV Index",
-                data = "",
+                data = weatherResponsesList,
                 iconId = R.drawable.sunny,
                 doOnClick = {
                     layoutManager.scrollToPosition(2)

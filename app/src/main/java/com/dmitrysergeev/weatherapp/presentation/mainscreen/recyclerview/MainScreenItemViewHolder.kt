@@ -11,6 +11,7 @@ import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
+import com.dmitrysergeev.weatherapp.databinding.UvIndexMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.presentation.views.GradientProgressBar
@@ -115,6 +116,16 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 val visibility = weatherForecasts[0].currentWeather.visKm.toInt()
                 (binding as VisibilityMainScreenItemBinding).apply {
                     visibilityValue.text = root.context.getString(R.string.visibility_value_km, visibility)
+                }
+            }
+            MainScreenItemListAdapter.UV_INDEX_VIEW -> {
+                val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                if (weatherForecasts.isEmpty())
+                    return
+                val uvIndex = weatherForecasts[0].currentWeather.uv
+                (binding as UvIndexMainScreenItemBinding).apply {
+                    uvIndexValue.text = uvIndex.toString()
+                    uvIndexText.text = "Not Moderate"
                 }
             }
         }

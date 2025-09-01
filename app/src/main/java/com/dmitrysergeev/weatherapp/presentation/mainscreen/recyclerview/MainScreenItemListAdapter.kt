@@ -8,6 +8,7 @@ import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
+import com.dmitrysergeev.weatherapp.databinding.UvIndexMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 class MainScreenItemListAdapter(
@@ -36,6 +37,9 @@ class MainScreenItemListAdapter(
             VISIBILITY_VIEW -> {
                 binding = VisibilityMainScreenItemBinding.inflate(inflater,parent, false)
             }
+            UV_INDEX_VIEW -> {
+                binding = UvIndexMainScreenItemBinding.inflate(inflater, parent, false)
+            }
         }
         return MainScreenItemViewHolder(binding!!)
     }
@@ -48,6 +52,7 @@ class MainScreenItemListAdapter(
             "Precipitation" -> PRECIPITATION_ITEM_VIEW
             "Air Quality" -> AIR_QUALITY_VIEW
             "Visibility" -> VISIBILITY_VIEW
+            "UV Index" -> UV_INDEX_VIEW
             else -> TMP_MENU_ITEM_VIEW
         }
     }
@@ -72,5 +77,6 @@ class MainScreenItemListAdapter(
         const val PRECIPITATION_ITEM_VIEW = 3
         const val AIR_QUALITY_VIEW = 4
         const val VISIBILITY_VIEW = 5
+        const val UV_INDEX_VIEW = 6
     }
 }
