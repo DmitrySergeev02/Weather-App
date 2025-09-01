@@ -4,10 +4,13 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.TypedValue
+import androidx.appcompat.content.res.AppCompatResources
+import com.dmitrysergeev.weatherapp.R
 import com.dmitrysergeev.weatherapp.presentation.views.GradientProgressBar
 
 class UvIndexProgressBar(
@@ -38,14 +41,40 @@ class UvIndexProgressBar(
         style = Paint.Style.STROKE
     }
 
+    private fun getTrianglePath(dy: Float): Path {
+        val path = Path()
+        path.moveTo(width/2f, height-dy-12.5f-5)
+        path.rLineTo(10f,12.5f)
+        path.rLineTo(-20f,0f)
+        path.rLineTo(10f,-12.5f)
+        path.close()
+
+        return path
+    }
+
     override fun onDraw(canvas: Canvas) {
         canvas.drawRect(Rect(0,0,width,height),boundPaint) // debug
-        canvas.translate(0f,height/2f-textHeight-10)
+
+        val dy = height/2f-textHeight-10
+        canvas.translate(0f,dy)
         super.onDraw(canvas)
-        canvas.translate(0f,-(height/2f-textHeight-10))
+        canvas.translate(0f,-dy)
+
         canvas.drawText("Low",0f, height.toFloat()-textPaint.fontMetrics.descent, textPaint)
         val startX = width - textPaint.measureText("Extreme danger")
         canvas.drawText("Extreme danger", startX, height.toFloat()-textPaint.fontMetrics.descent, textPaint)
+
+        boundPaint.style = Paint.Style.FILL
+        canvas.drawPath(getTrianglePath(dy), boundPaint)
+        boundPaint.style = Paint.Style.STROKE
+        boundPaint.strokeWidth = 2f
+        boundPaint.color = Color.WHITE
+//        boundPaint.strokeJoin = Paint.Join.ROUND
+        canvas.drawPath(getTrianglePath(dy),boundPaint)
+
+        val drawable = AppCompatResources.getDrawable(context, R.drawable.sunny)
+        drawable?.setBounds(width/2-32,height/2-32,width/2+32,height/2+32)
+        drawable?.draw(canvas)
     }
 
 }
