@@ -7,7 +7,7 @@ import okhttp3.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
-const val API_KEY = "6acd4a1405454811ada11545250603"
+const val API_KEY = "NOT_KEY"
 
 @Singleton
 class WeatherInterceptor @Inject constructor(): Interceptor {

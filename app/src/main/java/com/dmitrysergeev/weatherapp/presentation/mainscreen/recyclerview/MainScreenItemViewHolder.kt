@@ -11,11 +11,14 @@ import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.PrecipitationMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.QuickMenuRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.databinding.TmpScreenMenuItemBinding
+import com.dmitrysergeev.weatherapp.databinding.UvIndexMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.presentation.views.GradientProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.Pm25Data
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexData
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerview.WeatherCardListAdapter
 
 class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.ViewHolder(binding.root){
@@ -115,6 +118,28 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                 val visibility = weatherForecasts[0].currentWeather.visKm.toInt()
                 (binding as VisibilityMainScreenItemBinding).apply {
                     visibilityValue.text = root.context.getString(R.string.visibility_value_km, visibility)
+                }
+            }
+            MainScreenItemListAdapter.UV_INDEX_VIEW -> {
+                val weatherForecasts = (item.data as List<ForecastWeatherResponse>)
+                if (weatherForecasts.isEmpty())
+                    return
+                val uvIndex = weatherForecasts[0].currentWeather.uv
+                (binding as UvIndexMainScreenItemBinding).apply {
+                    root.setOnClickListener {
+                        val value = (Math.random()*13).toFloat()
+                        Log.d(UvIndexProgressBar.TAG,value.toString())
+                        uvIndexValue.text = String.format("%.1f",value)
+                        val uvIndexData = UvIndexData(value)
+                        uvIndexText.text = root.context.getString(uvIndexData.getLevel())
+                        uvIndexProgressBar.setProgress(uvIndex.toInt())
+                        uvIndexProgressBar.setProgress(value.toInt(),true)
+                    }
+
+                    uvIndexValue.text = String.format("%.1f",uvIndex)
+                    val uvIndexData = UvIndexData(uvIndex)
+                    uvIndexText.text = root.context.getString(uvIndexData.getLevel())
+                    uvIndexProgressBar.setProgress(uvIndex.toInt())
                 }
             }
         }

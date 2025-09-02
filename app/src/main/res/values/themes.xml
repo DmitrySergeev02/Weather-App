@@ -39,6 +39,10 @@
         <item name="fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="Medium_black" parent="Medium">
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+
 
     <style name="Headline4">
         <item name="android:textSize">34sp</item>
