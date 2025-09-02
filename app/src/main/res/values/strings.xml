@@ -26,4 +26,9 @@
     <string name="visibility">Visibility</string>
     <string name="visibility_value_km">%1$d Km</string>
     <string name="uv_index">UV index</string>
+    <string name="uv_low">Low</string>
+    <string name="uv_moderate">Moderate</string>
+    <string name="uv_high">High</string>
+    <string name="uv_very_high">Very High</string>
+    <string name="uv_extreme_danger">Extreme Danger</string>
 </resources>

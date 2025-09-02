@@ -28,6 +28,6 @@ class AirQualityProgressBar(
         val cX = relativeProgress*width
         val color = getColor(relativeProgress)
         circlePaint.color = color
-        canvas.drawCircle(cX, height/2f, 3*context.resources.displayMetrics.density, strokePaint)
+        canvas.drawCircle(cX, height/2f, 3*context.resources.displayMetrics.density, circlePaint)
     }
 }

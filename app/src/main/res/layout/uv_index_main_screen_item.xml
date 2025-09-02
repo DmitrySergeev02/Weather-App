@@ -59,7 +59,7 @@
             />
 
         <com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexProgressBar
-            android:id="@+id/uv_index"
+            android:id="@+id/uv_index_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/uv_index_value"

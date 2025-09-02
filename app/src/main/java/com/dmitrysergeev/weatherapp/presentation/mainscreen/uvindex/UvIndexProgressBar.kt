@@ -25,7 +25,6 @@ class UvIndexProgressBar(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val width = MeasureSpec.getSize(widthMeasureSpec)
         val height = MeasureSpec.getSize(heightMeasureSpec) + 200
-//        Log.d(TAG, "$width, $height")
         setMeasuredDimension(width, height)
     }
 
@@ -53,7 +52,7 @@ class UvIndexProgressBar(
     }
 
     override fun onDraw(canvas: Canvas) {
-        canvas.drawRect(Rect(0,0,width,height),boundPaint) // debug
+//        canvas.drawRect(Rect(0,0,width,height),boundPaint) // debug
 
         val dy = height/2f-textHeight-10
         canvas.translate(0f,dy)
@@ -66,6 +65,7 @@ class UvIndexProgressBar(
 
         val cX = width * (progress/max.toFloat())
 
+        boundPaint.color = Color.BLACK
         boundPaint.style = Paint.Style.FILL
         canvas.drawPath(getTrianglePath(dy, cX), boundPaint)
         boundPaint.style = Paint.Style.STROKE
@@ -79,4 +79,7 @@ class UvIndexProgressBar(
         drawable?.draw(canvas)
     }
 
+    companion object {
+        const val TAG = "UvIndexProgressBar"
+    }
 }
