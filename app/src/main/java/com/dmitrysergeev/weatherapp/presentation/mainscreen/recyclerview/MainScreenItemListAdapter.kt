@@ -2,6 +2,7 @@ package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.dmitrysergeev.weatherapp.databinding.AirQualityMainScreenItemBinding
@@ -12,7 +13,8 @@ import com.dmitrysergeev.weatherapp.databinding.UvIndexMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 class MainScreenItemListAdapter(
-    private var menuItemList: List<MainScreenMenuItem>
+    private var menuItemList: List<MainScreenMenuItem>,
+    private val fragmentManager: FragmentManager
 ): RecyclerView.Adapter<MainScreenItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainScreenItemViewHolder {
@@ -60,7 +62,7 @@ class MainScreenItemListAdapter(
     override fun onBindViewHolder(holder: MainScreenItemViewHolder, position: Int) {
         val item = menuItemList[position]
         val itemViewType = getItemViewType(position)
-        holder.onBind(item, itemViewType)
+        holder.onBind(item, itemViewType, fragmentManager)
     }
 
     fun updateData(newMenuItemList: List<MainScreenMenuItem>){

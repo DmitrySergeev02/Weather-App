@@ -144,7 +144,7 @@ class MainScreenFragment: Fragment() {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.layoutManager = layoutManager
         val mainScreenMenuItems = createMainScreenItems(layoutManager = layoutManager)
-        val adapter = MainScreenItemListAdapter(mainScreenMenuItems)
+        val adapter = MainScreenItemListAdapter(mainScreenMenuItems, parentFragmentManager)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(MarginItemDecoration(requireContext(), marginHorizontalDp = 20, marginVerticalDp = 10))
 

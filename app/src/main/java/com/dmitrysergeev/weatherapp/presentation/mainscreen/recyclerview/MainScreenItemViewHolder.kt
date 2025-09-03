@@ -1,6 +1,7 @@
 package com.dmitrysergeev.weatherapp.presentation.mainscreen.recyclerview
 
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.dmitrysergeev.weatherapp.databinding.VisibilityMainScreenItemBinding
 import com.dmitrysergeev.weatherapp.databinding.WeatherCardsRecyclerViewBinding
 import com.dmitrysergeev.weatherapp.presentation.views.GradientProgressBar
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.airquality.Pm25Data
+import com.dmitrysergeev.weatherapp.presentation.mainscreen.bottomsheet.ModalBottomSheet
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.quickmenu.QuickMenuListAdapter
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexData
 import com.dmitrysergeev.weatherapp.presentation.mainscreen.uvindex.UvIndexProgressBar
@@ -23,7 +25,7 @@ import com.dmitrysergeev.weatherapp.presentation.mainscreen.weathercardrecyclerv
 
 class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.ViewHolder(binding.root){
 
-    fun onBind(item: MainScreenMenuItem, viewType: Int){
+    fun onBind(item: MainScreenMenuItem, viewType: Int, fragmentManager: FragmentManager){
         when (viewType){
             MainScreenItemListAdapter.WEATHER_CARDS_VIEW -> {
                 (binding as WeatherCardsRecyclerViewBinding).apply {
@@ -109,6 +111,11 @@ class MainScreenItemViewHolder(private val binding: ViewBinding): RecyclerView.V
                     co.labelText.text = "Co"
                     co.valueText.text = airQuality.co.toInt().toString()
                     co.progressBar.progress = airQuality.co.toInt()
+
+                    helpButton.setOnClickListener {
+                        val fragment = ModalBottomSheet("Air Quality", R.layout.air_quality_details)
+                        fragment.show(fragmentManager,ModalBottomSheet.TAG)
+                    }
                 }
             }
             MainScreenItemListAdapter.VISIBILITY_VIEW -> {
